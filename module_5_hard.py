@@ -2,9 +2,9 @@ import time
 
 class User:
     def __init__(self, nickname, password, age):
-        self.nickname = ""
-        self.password = ""
-        self.age = 0
+        self.nickname = nickname
+        self.password = password
+        self.age = age
 
     def __hash__(self):
         return self.password
@@ -17,13 +17,12 @@ class Video:
         self.adult_mode = adult_mode
 
 class UrTube:
+    users = []
+    videos = []
     def __init__(self):
-        self.users = []
-        self.videos = []
         self.current_user = None
 
     def add(self, *args):                   # принимает неограниченное кол-во объектов класса Video
-        video = []
         check_video = False
         for i in args:
             video = [i.title, i.duration, i.time_now, i.adult_mode]
@@ -41,7 +40,7 @@ class UrTube:
                 else:
                     print(f'\033[31m фильм {i.title} уже существует !!! \033[0m')
                     time.sleep(1)
-            video = []
+         
 
     def get_videos(self, search_video): #принимает поисковое слово и возвращает список названий всех видео, содержащих поисковое слово
         self.search_video = search_video.lower()
